@@ -1,3 +1,4 @@
+![ReadmeIMG](https://user-images.githubusercontent.com/114104738/202208245-51d5d5cd-53d2-4505-b676-f5d25f9c005b.png)
 # SR API - React
 
 Ett projekt för att träna och lära mig att hantera REST-APIer.
