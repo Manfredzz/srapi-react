@@ -1,0 +1,35 @@
+import React, { useContext, useState } from 'react';
+
+const ChannelList= React.createContext()
+const UppdateChannelList = React.createContext() 
+
+export const useChannelList= () =>{
+    return useContext(ChannelContext);
+} 
+
+export const useUppdateChannelList = () =>{
+    return useContext(UppdateChannelContext);
+} 
+
+export const CurrentChannelContext = ({children}) => {
+   const [channelList, setChannelList] = useState([]);
+   
+   const fetchChannels = async () => {
+    const data = await fetch(
+       `https://api.sr.se/api/v2/channels?format=json&pagination=false&indent=true`
+    );
+    const SRobject = await data.json();
+    const channels = SRobject.channels;
+    setChannelList(channels);
+ };
+ fetchChannels().catch(console.error);
+   
+    return (
+      <ChannelList.Provider value={channelList}>
+        <UppdateChannelList.Provider value={fetchChannels}>
+           {children}
+        </UppdateChannelList.Provider>
+      </ChannelList.Provider>
+   );
+}
+
